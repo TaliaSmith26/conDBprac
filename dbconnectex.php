@@ -27,7 +27,7 @@ echo "Connected successfully<br>";
 $conn->select_db($db);
 
 	//run a query
-$sql = "SELECT first_name, last_name FROM users";
+$sql = "SELECT item_name, cost_each FROM Products";
 $result = $conn->query($sql);
 
 //get results
@@ -35,7 +35,7 @@ if ($result->num_rows > 0)
 {
     while($row = $result->fetch_assoc()) 
    {
-    	echo $row["first_name"]. " " . $row["last_name"]. "<br>";
+    	echo $row["item_name"]. " " . $row["cost_each"]. "<br>";
    }
 } 
 else 
