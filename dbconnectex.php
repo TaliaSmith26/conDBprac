@@ -9,7 +9,7 @@
 	<?php
 	
 	//establish connection info
-$server = "talias2.sg-host.com";// your server
+$server = "localhost";// your server
 $userid = "uwggwgijazowf"; // your user id
 $pw = "9wr2p5brddtg"; // your pw
 $db= "dblsb9jeuotbq6"; // your database
