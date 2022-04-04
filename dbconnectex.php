@@ -1,33 +1,50 @@
-<?php
-//Step1
- $db = mysqli_connect('talias2.sg-host.com','uwggwgijazowf','9wr2p5brddtg','dblsb9jeuotbq6')
- or die('Error connecting to MySQL server.');
-?>
-
+<!doctype html>
 <html>
- <head>
- </head>
- <body>
- <h1>PHP connect to MySQL</h1>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
 
-<?php
-//Step2
+<body>
+	<?php
+	
+	//establish connection info
+$server = "talias2.sg-host.com";// your server
+$userid = "uwggwgijazowf"; // your user id
+$pw = "9wr2p5brddtg"; // your pw
+$db= "dblsb9jeuotbq6"; // your database
+		
+// Create connection
+$conn = new mysqli($server, $userid, $pw );
 
-$query = "SELECT * FROM Products";
-mysqli_query($db, $query) or die('Error querying database.');
-
-$result = mysqli_query($db, $query);
-$row = mysqli_fetch_array($result);
-
-while ($row = mysqli_fetch_array($result)) {
- echo $row['ID'] . ' ' . $row['item_name'] . ' ' . $row['cost_each'] .'<br />';
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
+echo "Connected successfully<br>";
+	
+//select the database
+$conn->select_db($db);
 
-//Step 4
-mysqli_close($db);
-?>
+	//run a query
+$sql = "SELECT first_name, last_name FROM users";
+$result = $conn->query($sql);
 
+//get results
+if ($result->num_rows > 0) 
+{
+    while($row = $result->fetch_assoc()) 
+   {
+    	echo $row["first_name"]. " " . $row["last_name"]. "<br>";
+   }
+} 
+else 
+  echo "no results";
+	
+//close the connection	
+$conn->close();
 
-
+	
+	?>
 </body>
 </html>
